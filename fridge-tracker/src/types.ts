@@ -1,6 +1,6 @@
 export interface Action {
   type: ActionType;
-  payload: FoodPurchase | { id: String; update: FoodUpdate } | String;
+  payload: FoodPurchase | { id: String; update: FoodUpdate } | string;
 }
 
 export enum ActionType {
@@ -20,16 +20,16 @@ export interface mState {
 }
 
 export interface FoodPurchase {
-  mId: String;
-  id: String;
-  name: String;
+  mId: string;
+  id: string;
+  name: string;
   location: FoodLocation;
-  quantity: Number;
+  quantity: number;
   useBy: Date;
 }
 
 export interface FoodUpdate {
   location: FoodLocation;
-  quantity: Number;
+  quantity: number;
   useBy: Date;
 }
