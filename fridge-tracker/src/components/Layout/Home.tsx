@@ -1,12 +1,12 @@
 import React from "react";
 import { Tracker } from "../Tracker";
-import { AddItem } from "../AddItem";
+// import { AddItem } from "../AddItem";
 
 export default function Home() {
   return (
-    <div>
+    <React.Fragment>
+      <h1 className="text-center mb-4">Your Kitchen</h1>
       <Tracker />
-      <AddItem />
-    </div>
+    </React.Fragment>
   );
 }

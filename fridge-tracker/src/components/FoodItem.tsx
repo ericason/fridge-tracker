@@ -1,42 +1,29 @@
 import React from "react";
-import { FoodPurchase } from "../types";
+import { mFood } from "../types";
+import { FoodItemCard } from "./FoodItemCard";
 
-export const FoodItem = ({ item }: { item: FoodPurchase }) => {
+export const FoodItem = ({ item }: { item: mFood }) => {
+  function getDaysUntilUseBy(item: mFood): number {
+    const diff = item.useBy.valueOf() - new Date().valueOf();
+    return Math.ceil(diff / (1000 * 3600 * 24));
+  }
+
   return (
-    <div className="d-flex mt-3 align-items-center px-4 w-25">
-      <div
-        className="grid-cell d-flex justify-content-between"
-        style={{ minWidth: "105px", textAlign: "start" }}
-      >
-        <div>{item.name}</div>
-        <div className="dropdown show">
-          <a
-            className="btn btn-sm btn-secondary dropdown-toggle"
-            href="#"
-            role="button"
-            id="dropdownMenuLink"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          ></a>
-
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <a className="dropdown-item" href="#">
-              Move
-            </a>
-            <a className="dropdown-item" href="#">
-              Consume
-            </a>
-            <a className="dropdown-item" href="#">
-              Open
-            </a>
-          </div>
-        </div>
+    <div className="food-item-row w-100 d-flex flex-row" key={item.mId}>
+      <div className="food-item-card-wrapper">
+        <FoodItemCard item={item} />
       </div>
-      <div className="grid-cell" style={{ minWidth: "50px" }}>
-        {item.quantity}
+      <div className="vertical-divider ml-3"></div>
+      <div className="timeline-bar-container flex-grow-1 d-flex align-items-center">
+        <div
+          className="timeline-bar"
+          style={{
+            width: getDaysUntilUseBy(item) * (100 / 14) - 100 / 28 + "%",
+            height: "33%",
+            backgroundColor: "green"
+          }}
+        ></div>
       </div>
-      {/* <div className="w-75 d-flex justify-content-around overflow-auto grid-cell"></div> */}
     </div>
   );
 };
